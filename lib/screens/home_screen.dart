@@ -1,7 +1,6 @@
 import 'package:book_tracker/Models/book_model.dart';
 import 'package:book_tracker/Models/utils/detail_args.dart';
 import 'package:book_tracker/network.dart';
-import 'package:book_tracker/screens/details_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -54,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: 0.5,
+                  childAspectRatio: 0.7,
                 ),
                 itemCount: _books.length,
                 itemBuilder: (context, index) {
@@ -70,21 +69,34 @@ class _HomeScreenState extends State<HomeScreen> {
                         behavior: HitTestBehavior.opaque,
                         onTap: () {
                           print('tapped');
-                          Navigator.pushNamed(context,
-                           '/details',
-                          arguments: BookDetailsArguments(itemBook:book),
+                          Navigator.pushNamed(
+                            context,
+                            '/details',
+                            arguments: BookDetailsArguments(itemBook: book),
                           );
                         },
                         child: Column(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.all(18.0),
-                              child: Text(book.title),
+                              padding: const EdgeInsets.all(10.0),
+                              child: Image.network(
+                                                         'https://cors-anywhere.herokuapp.com/${book.thumbnail}' ??
+                                    'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Ym9va3xlbnwwfHwwfHx8MA%3D%3D',
+                                width: 150,
+                                height: 250,
+                                fit: BoxFit.cover,
+                              ),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(18.0),
-                              child: Text(book.authors.join(',')),
+                              child: Text(book.title,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,),
                             ),
+                            // Padding(
+                            //   padding: const EdgeInsets.all(18.0),
+                            //   child: Text(book.authors.join(',')),
+                            // ),
                           ],
                         ),
                       ),
@@ -113,5 +125,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-

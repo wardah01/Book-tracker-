@@ -1,5 +1,3 @@
-import 'package:book_tracker/Models/book_model.dart';
-import 'package:book_tracker/network.dart';
 import 'package:book_tracker/screens/details_screen.dart';
 import 'package:book_tracker/screens/favourites_screen.dart';
 import 'package:book_tracker/screens/home_screen.dart';
