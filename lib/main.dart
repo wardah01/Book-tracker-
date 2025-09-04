@@ -22,7 +22,8 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.light,
           primary: Color(0xFF4E342E),     // Deep brown
           onPrimary: Colors.white,        // Text on primary
-          secondary: Color.fromARGB(255, 241, 177, 130),
+          secondary: Color(0xFFD8CAB8),
+
           onSecondary: Colors.black,      // Text on secondary
           error: Colors.red,
           onError: Colors.white,

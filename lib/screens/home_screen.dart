@@ -1,3 +1,4 @@
+import 'package:book_tracker/Components/gridview_widget.dart';
 import 'package:book_tracker/Models/book_model.dart';
 import 'package:book_tracker/Models/utils/detail_args.dart';
 import 'package:book_tracker/network.dart';
@@ -49,62 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 onSubmitted: (query) => fetchBooks(query),
               ),
             ),
-            Expanded(
-              child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.7,
-                ),
-                itemCount: _books.length,
-                itemBuilder: (context, index) {
-                  BookModel book = _books[index];
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.secondary,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: GestureDetector(
-                        behavior: HitTestBehavior.opaque,
-                        onTap: () {
-                          print('tapped');
-                          Navigator.pushNamed(
-                            context,
-                            '/details',
-                            arguments: BookDetailsArguments(itemBook: book),
-                          );
-                        },
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Image.network(
-                                                         'https://cors-anywhere.herokuapp.com/${book.thumbnail}' ??
-                                    'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Ym9va3xlbnwwfHwwfHx8MA%3D%3D',
-                                width: 150,
-                                height: 250,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(18.0),
-                              child: Text(book.title,
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,),
-                            ),
-                            // Padding(
-                            //   padding: const EdgeInsets.all(18.0),
-                            //   child: Text(book.authors.join(',')),
-                            // ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
+            GridViewWidget(books: _books),
 
             // Expanded(
             //   child: SizedBox(
